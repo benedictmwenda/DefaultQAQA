@@ -25,23 +25,27 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -50,6 +54,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -72,6 +77,7 @@ import androidx.navigation.compose.rememberNavController
 import net.ezra.R
 import net.ezra.navigation.ROUTE_ABOUT
 import net.ezra.navigation.ROUTE_ADD_STUDENTS
+import net.ezra.navigation.ROUTE_CONTACT
 import net.ezra.navigation.ROUTE_HOME
 import net.ezra.navigation.ROUTE_MENU
 import net.ezra.navigation.ROUTE_SEARCH
@@ -124,7 +130,7 @@ fun HomeScreen(navController: NavHostController) {
                                  .fillMaxSize()
 //                .clip(CircleShape)
                              ,
-                             contentScale = ContentScale.Crop
+                             contentScale = ContentScale.FillBounds
                          )
 
 
@@ -169,7 +175,6 @@ fun HomeScreen(navController: NavHostController) {
                                      colors = ButtonDefaults.outlinedButtonColors(Color.White),
                                      border = BorderStroke(1.5.dp, Color.Transparent),
                                      contentPadding = PaddingValues(15.dp),
-
                                      ) {
                                      Row(
                                          modifier = Modifier
@@ -194,14 +199,14 @@ fun HomeScreen(navController: NavHostController) {
                                          Text(text = "Search.....", color = Color.LightGray)
                                      }
                                  }
-
+                                 Spacer(modifier = Modifier.width(10.dp))
                                  Image(
                                      imageVector = Icons.Default.Menu, contentDescription = "",
                                      modifier = Modifier
                                          .border(
                                              width = 1.5.dp,
                                              color = Color(0xff182bff),
-                                             shape = RoundedCornerShape(2.5.dp)
+                                             shape = RoundedCornerShape(5.5.dp)
                                          )
                                          .padding(5.dp)
                                  )
@@ -354,7 +359,7 @@ fun HomeScreen(navController: NavHostController) {
                              ) {
                                  Column(
                                      modifier = Modifier
-                                         .size(width = 350.dp, height = 1000.dp)
+                                         .size(width = 350.dp, height = 200.dp)
                                  ) {
                                      Card(onClick = {
                                          navController.navigate(ROUTE_ABOUT) {
@@ -421,7 +426,7 @@ fun HomeScreen(navController: NavHostController) {
 
                                  Column(
                                      modifier = Modifier
-                                         .size(width = 350.dp, height = 1000.dp)
+                                         .size(width = 350.dp, height = 200.dp)
                                  ) {
                                      Card(onClick = {
                                          navController.navigate(ROUTE_ABOUT) {
@@ -488,7 +493,7 @@ fun HomeScreen(navController: NavHostController) {
 
                                  Column(
                                      modifier = Modifier
-                                         .size(width = 350.dp, height = 1000.dp)
+                                         .size(width = 350.dp, height = 200.dp)
                                  ) {
                                      Card(onClick = {
                                          navController.navigate(ROUTE_ABOUT) {
@@ -555,7 +560,7 @@ fun HomeScreen(navController: NavHostController) {
 
                                  Column(
                                      modifier = Modifier
-                                         .size(width = 350.dp, height = 1000.dp)
+                                         .size(width = 350.dp, height = 200.dp)
                                  ) {
                                      Card(onClick = {
                                          navController.navigate(ROUTE_ABOUT) {
@@ -619,39 +624,213 @@ fun HomeScreen(navController: NavHostController) {
                                  }
 
                              }
+
+
+
+                             // Testimoniies
+
+                             Column {
+                                 Text(text = "Testimonials")
+                                 Text(text = "They are just some of those who have trusted our services. We hope your name will be in here to.")
+                             }
+
+                             Row(
+                                 horizontalArrangement = Arrangement.SpaceEvenly,
+                                 modifier = Modifier
+                                     .horizontalScroll(state = ScrollState(2))
+                                     .fillMaxWidth()
+                                     .wrapContentHeight()
+                                     .padding(10.dp)
+                                     .padding(top = 10.dp)
+                             ) {
+                                 Column(
+                                     modifier = Modifier
+                                         .size(width = 350.dp, height = 140.dp)
+                                 ) {
+                                     Card(
+                                         modifier = Modifier
+                                             .fillMaxWidth()
+                                             .padding(top = 6.dp)
+                                             .wrapContentHeight(align = Alignment.CenterVertically),
+                                         elevation = CardDefaults.cardElevation(8.dp),
+                                         shape = CutCornerShape(topEnd = 20.dp)
+                                     ) {
+                                         Box(modifier = Modifier
+                                             .fillMaxSize()
+                                             .background(color = Color(0xffaee2e1)))
+                                         {
+//                                             Image(
+//                                                 painter = painterResource(id = R.drawable.kaka),
+//                                                 contentDescription = "QAQA SOFTWARE",
+//                                                 modifier = Modifier
+//                                                     .size(100.dp)
+//                                             )
+                                             Row {
+                                                 Image(
+                                                     painter = painterResource(id = R.drawable.kaka),
+                                                     contentDescription = "QAQA SOFTWARE",
+                                                     modifier = Modifier
+                                                         .size(100.dp),
+                                                 )
+                                                 Column(
+                                                     modifier = Modifier
+                                                         .padding(20.dp)
+                                                 ) {
+                                                     Text(text = "Qaqa SpecQ")
+                                                     Text("Founder -Qaqa Softwares")
+                                                     Spacer(modifier = Modifier.height(20.dp))
+                                                     Text(
+                                                         text = AnnotatedString("Great communication through out the project development."),
+
+                                                     )
+                                                 }
+
+                                             }
+
+                                         }
+                                     }
+                                 }
+
+                                 Spacer(modifier = Modifier.width(20.dp))
+
+                                 Column(
+                                     modifier = Modifier
+                                         .size(width = 350.dp, height = 140.dp)
+                                 ) {
+                                     Card(
+                                         modifier = Modifier
+                                             .fillMaxWidth()
+                                             .padding(top = 6.dp)
+                                             .wrapContentHeight(align = Alignment.CenterVertically),
+                                         shape = CutCornerShape(topEnd = 20.dp),
+                                         elevation = CardDefaults.cardElevation(8.dp)
+                                     ) {
+                                         Box(modifier = Modifier
+                                             .fillMaxSize()
+                                             .background(color = Color(0xffaee2e1)))
+                                         {
+//                                             Image(
+//                                                 painter = painterResource(id = R.drawable.kaka),
+//                                                 contentDescription = "QAQA SOFTWARE",
+//                                                 modifier = Modifier
+//                                                     .size(100.dp),
+//                                                 Alignment.TopEnd
+//                                             )
+                                             Row {
+                                                 Image(
+                                                     painter = painterResource(id = R.drawable.kaka),
+                                                     contentDescription = "QAQA SOFTWARE",
+                                                     modifier = Modifier
+                                                         .size(100.dp),
+                                                 )
+                                                 Column(
+                                                     modifier = Modifier
+                                                         .padding(20.dp)
+                                                 ) {
+                                                     Text(text = "Qaqa SpecQ")
+                                                     Text("Founder -Qaqa Softwares")
+                                                     Spacer(modifier = Modifier.height(20.dp))
+                                                     Text(
+                                                         text = AnnotatedString("Great communication through out the project development."),
+
+                                                         )
+                                                 }
+
+                                             }
+
+                                         }
+                                     }
+                                 }
+                                 Spacer(modifier = Modifier.width(20.dp))
+
+                                 Column(
+                                     modifier = Modifier
+                                         .size(width = 350.dp, height = 140.dp)
+                                 ) {
+                                     Card(
+                                         modifier = Modifier
+                                             .fillMaxWidth()
+                                             .padding(top = 6.dp)
+                                             .wrapContentHeight(align = Alignment.CenterVertically),
+                                         shape = CutCornerShape(topEnd = 20.dp),
+                                         elevation = CardDefaults.cardElevation(8.dp)
+                                     ) {
+                                         Box(modifier = Modifier
+                                             .fillMaxSize()
+                                             .background(color = Color(0xffaee2e1)))
+                                         {
+//                                             Image(
+//                                                 painter = painterResource(id = R.drawable.kaka),
+//                                                 contentDescription = "QAQA SOFTWARE",
+//                                                 modifier = Modifier
+//                                                     .size(100.dp),
+//                                                 Alignment.TopEnd
+//                                             )
+                                             Row {
+                                                 Image(
+                                                     painter = painterResource(id = R.drawable.kaka),
+                                                     contentDescription = "QAQA SOFTWARE",
+                                                     modifier = Modifier
+                                                         .size(100.dp),
+                                                 )
+                                                 Column(
+                                                     modifier = Modifier
+                                                         .padding(20.dp)
+                                                 ) {
+                                                     Text(text = "Qaqa SpecQ")
+                                                     Text("Founder -Qaqa Softwares")
+                                                     Spacer(modifier = Modifier.height(20.dp))
+                                                     Text(
+                                                         text = AnnotatedString("Great communication through out the project development."),
+
+                                                         )
+                                                 }
+
+                                             }
+
+                                         }
+                                     }
+                                 }
+                             }
                          }
                      }
                  }
              }
          },
 
-         bottomBar = {BottomBar()}
+         bottomBar = {BottomBar(navController)}
      )
 
  }
 
 
  @Composable
- fun BottomBar() {
+ fun BottomBar(navController: NavHostController) {
      val selectedIndex = remember { mutableStateOf(0) }
      BottomNavigation(elevation = 10.dp) {
          BottomNavigationItem(icon = {
              Icon(imageVector = Icons.Default.Home,"")
          },
              label = { Text(text = "Home") }, selected = (selectedIndex.value == 0), onClick = {
-                 selectedIndex.value = 0
+                 navController.navigate(ROUTE_HOME) {
+                     popUpTo(ROUTE_HOME) { inclusive = true }
+                 }
              })
          BottomNavigationItem(icon = {
-             Icon(imageVector = Icons.Default.Favorite,"")
+             Icon(imageVector = Icons.Default.Refresh,"")
          },
-             label = { Text(text = "Favorite") }, selected = (selectedIndex.value == 1), onClick = {
-                 selectedIndex.value = 1
+             label = { Text(text = "JobInn") }, selected = (selectedIndex.value == 1), onClick = {
+                 navController.navigate(ROUTE_ADD_STUDENTS) {
+                 popUpTo(ROUTE_HOME) { inclusive = true }
+             }
              })
          BottomNavigationItem(icon = {
-             Icon(imageVector = Icons.Default.Person, "")
+             Icon(imageVector = Icons.Default.AccountCircle, "")
          },
              label = { Text(text = "Profile") }, selected = (selectedIndex.value == 2), onClick = {
-                 selectedIndex.value = 2
+                 navController.navigate(ROUTE_CONTACT) {
+                     popUpTo(ROUTE_HOME) { inclusive = true }
+                 }
              })
      }
  }
