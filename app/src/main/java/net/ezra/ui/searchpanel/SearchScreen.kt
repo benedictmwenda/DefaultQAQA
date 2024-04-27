@@ -9,10 +9,12 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,58 +31,50 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import net.ezra.navigation.ROUTE_ADD_STUDENTS
+import net.ezra.navigation.ROUTE_CONTACT
+import net.ezra.navigation.ROUTE_HOME
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SearchScreen(navController: NavHostController) {
     Scaffold(
 
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Top App Bar")
-                },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.ArrowBack, "backIcon")
-                    }
-                },
-                backgroundColor = MaterialTheme.colorScheme.background,
-                contentColor = Color.White,
-                elevation = 10.dp
-            )
-        },
-
-
         content = {
 
         },
 
-        bottomBar = {BottomBar()}
+        bottomBar = {BottomBar(navController)}
     )
 }
 
 @Composable
-fun BottomBar() {
+fun BottomBar(navController: NavHostController) {
     val selectedIndex = remember { mutableStateOf(0) }
     BottomNavigation(elevation = 10.dp) {
         BottomNavigationItem(icon = {
             Icon(imageVector = Icons.Default.Home,"")
         },
             label = { Text(text = "Home") }, selected = (selectedIndex.value == 0), onClick = {
-                selectedIndex.value = 0
+                navController.navigate(ROUTE_HOME) {
+                    popUpTo(ROUTE_HOME) { inclusive = true }
+                }
             })
         BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Favorite,"")
+            Icon(imageVector = Icons.Default.Refresh,"")
         },
-            label = { Text(text = "Favorite") }, selected = (selectedIndex.value == 1), onClick = {
-                selectedIndex.value = 1
+            label = { Text(text = "JobInn") }, selected = (selectedIndex.value == 1), onClick = {
+                navController.navigate(ROUTE_ADD_STUDENTS) {
+                    popUpTo(ROUTE_HOME) { inclusive = true }
+                }
             })
         BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Person, "")
+            Icon(imageVector = Icons.Default.AccountCircle, "")
         },
             label = { Text(text = "Profile") }, selected = (selectedIndex.value == 2), onClick = {
-                selectedIndex.value = 2
+                navController.navigate(ROUTE_CONTACT) {
+                    popUpTo(ROUTE_HOME) { inclusive = true }
+                }
             })
     }
 }

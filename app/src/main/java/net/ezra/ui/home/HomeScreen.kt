@@ -81,7 +81,7 @@ import net.ezra.navigation.ROUTE_CONTACT
 import net.ezra.navigation.ROUTE_HOME
 import net.ezra.navigation.ROUTE_MENU
 import net.ezra.navigation.ROUTE_SEARCH
-import net.ezra.ui.about.BottomBar
+
 
  @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
  @Composable
