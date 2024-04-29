@@ -8,12 +8,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import net.ezra.ui.Getstarted
 import net.ezra.ui.SplashScreen
 import net.ezra.ui.home.HomeScreen
 import net.ezra.ui.home.MenuScreen
-import net.ezra.ui.searchpanel.SearchScreen
 import net.ezra.ui.inputdata.AddStudents
 import net.ezra.ui.inputdata.Student_list
+import net.ezra.ui.searchpanel.SearchScreen
+import net.ezra.ui.shop.QaqaScreen
 
 @Composable
 fun AppNavHost(
@@ -54,6 +56,14 @@ fun AppNavHost(
 
         composable(ROUTE_MENU) {
             MenuScreen(navController = navController)
+        }
+
+        composable(ROUTE_QAQA) {
+            QaqaScreen(title = String.Companion, navController = navController)
+        }
+
+        composable(ROUTE_GET) {
+            Getstarted(navController = navController)
         }
 
 

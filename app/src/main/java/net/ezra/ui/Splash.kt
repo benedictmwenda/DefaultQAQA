@@ -5,7 +5,8 @@ import android.content.res.Configuration
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,8 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import net.ezra.R
-import net.ezra.navigation.ROUTE_HOME
-
+import net.ezra.navigation.ROUTE_GET
 
 
 @Composable
@@ -42,7 +42,7 @@ fun SplashScreen(navController: NavHostController) {
                 }))
         // Customize the delay time
         delay(3000L)
-        navController.navigate(ROUTE_HOME)
+        navController.navigate(ROUTE_GET)
     }
 
     // Image
@@ -57,7 +57,7 @@ fun SplashScreen(navController: NavHostController) {
             modifier = Modifier.scale(scale.value)
         )
 
-        Text("Apen Softwares")
+        Text("Qaqa Softwares")
 
 
 
